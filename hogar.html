@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boost Home | Innovación para tu hogar</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">Boost Home</div>
+        <nav>
+            <ul>
+                <li><a href="index.html"class="activo">Inicio</a></li>
+                <li><a href="productos.html">Productos</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+        <div class="header-icons">
+            <input type="text" placeholder="Buscar productos..." class="search-bar">
+            <a href="#" class="cart-icon">🛒</a>
+        </div>
+    </header>
+
+  <main class="category-page">
+    <h1 class="category-title">Hogar Inteligente</h1>
+    <p class="category-intro">Explora nuestros productos inteligentes para automatizar tu hogar, mejorar tu comodidad y optimizar tu vida diaria.</p>
+
+    <div class="product-grid">
+
+      <!-- Producto -->
+      <div class="product-card" data-sku="ROO-IRB-I7PLUS" data-name="iRobot Roomba i7+" data-price="699.99" data-img="img/roomba-i7-plus.jpg">
+        <img src="img/roomba-i7-plus.jpg" alt="iRobot Roomba i7+">
+        <h2>iRobot Roomba i7+</h2>
+        <p><strong>Categoría:</strong> Hogar / Limpieza</p>
+        <p><strong>Descripción:</strong> Robot aspirador con mapeo inteligente y autovaciado de depósito.</p>
+        <p><strong>Beneficios:</strong> Limpieza automática y eficiente sin intervención manual.</p>
+        <p><strong>Precio regular:</strong> <span class="strike">US$ 749.99</span></p>
+        <p><strong>Oferta:</strong> <span class="offer">US$ 699.99</span></p>
+        <button class="btn-primary add-to-cart">Añadir al carrito</button>
+      </div>
+
+      <!-- Productos 2 -->
+      <div class="product-card" data-sku="GGL-NST-MINI" data-name="Google Nest Mini" data-price="49.99" data-img="img/google-nest-mini.jpg">
+        <img src="img/google-nest-mini.jpg" alt="Google Nest Mini">
+        <h2>Google Nest Mini</h2>
+        <p><strong>Categoría:</strong> Hogar / Asistentes</p>
+        <p><strong>Descripción:</strong> Asistente inteligente con control por voz para tu hogar.</p>
+        <p><strong>Beneficios:</strong> Controla música, luces y más con comandos de voz.</p>
+        <p><strong>Precio regular:</strong> <span class="strike">US$ 59.99</span></p>
+        <p><strong>Oferta:</strong> <span class="offer">US$ 49.99</span></p>
+        <button class="btn-primary add-to-cart">Añadir al carrito</button>
+      </div>
+
+      <!-- ... y así sucesivamente con los otros 8 productos ... -->
+
+    </div>
+  </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div>
+                <h3>Boost Home</h3>
+                <p>Innovación para tu hogar y tu vida.</p>
+            </div>
+            <div>
+                <h4>Enlaces rápidos</h4>
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Productos</a></li>
+                    <li><a href="#">Nosotros</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contacto</h4>
+                <p>Email: contacto@boosthome.com</p>
+                <p>Tel: +593 987 654 321</p>
+                <div class="redes">
+                    <a href="#">🌐</a>
+                    <a href="#">📘</a>
+                    <a href="#">📸</a>
+                </div>
+            </div>
+        </div>
+        <p class="copy">© 2025 Boost Home | Todos los derechos reservados</p>
+    </footer>
+
+  <!-- Script para el carrito -->
+  <script>
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('boost_cart') || '[]');
+      document.getElementById('cart-count').textContent = cart.reduce((sum, item) => sum + item.qty, 0);
+    }
+    updateCartCount();
+
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+      button.addEventListener('click', () => {
+        const card = button.closest('.product-card');
+        const product = {
+          sku: card.dataset.sku,
+          name: card.dataset.name,
+          price: parseFloat(card.dataset.price),
+          img: card.dataset.img,
+          qty: 1
+        };
+        let cart = JSON.parse(localStorage.getItem('boost_cart') || '[]');
+        const existing = cart.find(p => p.sku === product.sku);
+        if (existing) existing.qty++;
+        else cart.push(product);
+        localStorage.setItem('boost_cart', JSON.stringify(cart));
+        updateCartCount();
+        alert(`${product.name} añadido al carrito 🛒`);
+      });
+    });
+  </script>
+</body>
+</html>
