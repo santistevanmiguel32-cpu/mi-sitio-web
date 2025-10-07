@@ -14,17 +14,23 @@
     <!-- HEADER -->
     <header>
         <div class="logo">Boost Home</div>
-        <nav>
+    
+      <!-- 🔹 Botón menú hamburguesa para móviles -->
+    <div class="menu-toggle" id="menu-toggle">☰</div>    
+
+        <nav id="menu">
             <ul>
-                <li><a href="index.html"class="activo">Inicio</a></li>
+                <li><a href="index.html" class="activo">Inicio</a></li>
                 <li><a href="productos.html">Productos</a></li>
                 <li><a href="nosotros.html">Nosotros</a></li>
                 <li><a href="contacto.html">Contacto</a></li>
             </ul>
         </nav>
+
         <div class="header-icons">
             <input type="text" placeholder="Buscar productos..." class="search-bar">
             <a href="#" class="cart-icon">🛒</a>
+            <div class="menu-toggle" id="menu-toggle">☰</div>
         </div>
     </header>
 
@@ -137,6 +143,15 @@
         </div>
         <p class="copy">© 2025 Boost Home | Todos los derechos reservados</p>
     </footer>
+
+    <!-- SCRIPT MENU RESPONSIVO -->
+    <script>
+        const toggle = document.getElementById('menu-toggle');
+        const menu = document.getElementById('menu');
+        toggle.addEventListener('click', () => {
+            menu.classList.toggle('activo');
+        });
+    </script>
 
 </body>
 </html>
